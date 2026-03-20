@@ -4,16 +4,17 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +58,12 @@ class _LoginViewState extends State<LoginView> {
             ),
             Gap(50),
             CustomTextField(
+              labelText: 'Name',
+              hintText: "Enter your name",
+              controller: nameController,
+            ),
+            Gap(8),
+            CustomTextField(
               labelText: 'Email',
               hintText: "Enter your email",
               controller: emailController,
@@ -86,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   child: Text(
-                    "Log In",
+                    "Sign Up",
                     style: GoogleFonts.montserrat(color: Color(0xFFFFFFFF)),
                   ),
                 ),
@@ -127,7 +134,7 @@ class _LoginViewState extends State<LoginView> {
 
             Gap(15),
             Text(
-              "Don't have an account, Sign Up",
+              "Already have an account? Log In",
               style: GoogleFonts.montserrat(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
