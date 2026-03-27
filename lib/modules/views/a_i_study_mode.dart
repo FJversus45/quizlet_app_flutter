@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/a_i_flashcard_generated.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
 class AIStudyMode extends StatefulWidget {
@@ -81,7 +82,14 @@ class _AIStudyModeState extends State<AIStudyMode> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AIFlashcardGenerated(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFE98AC6),
                       padding: EdgeInsets.all(16),

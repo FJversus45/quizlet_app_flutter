@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/home_view.dart';
+import 'package:quizlet_app_flutter/modules/views/login_view.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
 class SignUp extends StatefulWidget {
@@ -82,7 +84,12 @@ class _SignUpState extends State<SignUp> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF9958FF),
                     padding: EdgeInsets.all(16),
@@ -106,7 +113,12 @@ class _SignUpState extends State<SignUp> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xfffffffff),
 
@@ -133,12 +145,20 @@ class _SignUpState extends State<SignUp> {
             ),
 
             Gap(15),
-            Text(
-              "Already have an account? Log In",
-              style: GoogleFonts.montserrat(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF9958FF),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginView()),
+                );
+              },
+              child: Text(
+                "Already have an account? Log In",
+                style: GoogleFonts.montserrat(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF9958FF),
+                ),
               ),
             ),
           ],

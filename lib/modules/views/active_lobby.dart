@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/live_game.dart';
 import 'package:quizlet_app_flutter/modules/widgets/player_mini_view.dart';
 
 class ActiveLobby extends StatefulWidget {
@@ -190,7 +191,12 @@ class _ActiveLobbyState extends State<ActiveLobby> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveGame()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF9958FF),
                       padding: EdgeInsets.all(16),

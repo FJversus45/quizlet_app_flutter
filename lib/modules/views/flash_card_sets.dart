@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/ready_practice.dart';
 import 'package:quizlet_app_flutter/modules/widgets/flash_card_sets_mini_view.dart';
 
 class FlashCardSets extends StatefulWidget {
@@ -53,10 +54,18 @@ class _FlashCardSetsState extends State<FlashCardSets> {
               //     },
               //   )
               // }))
-              FlashCardSetsMiniView(
-                title: "title",
-                numberOfCards: 1,
-                creatorName: "fola",
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReadyPractice()),
+                  );
+                },
+                child: FlashCardSetsMiniView(
+                  title: "title",
+                  numberOfCards: 1,
+                  creatorName: "fola",
+                ),
               ),
             ],
           ),

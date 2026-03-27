@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/ready_practice.dart';
 import 'package:quizlet_app_flutter/modules/widgets/alternate_flash_sets_mini_view.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
@@ -35,10 +36,18 @@ class _PracticeFlashcardsState extends State<PracticeFlashcards> {
               hintText: "Search flashcard sets...",
             ),
             Gap(20),
-            AlternateFlashSetsMiniView(
-              title: "abn",
-              numberOfCards: 53,
-              creatorName: "fola",
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReadyPractice()),
+                );
+              },
+              child: AlternateFlashSetsMiniView(
+                title: "abn",
+                numberOfCards: 53,
+                creatorName: "fola",
+              ),
             ),
           ],
         ),

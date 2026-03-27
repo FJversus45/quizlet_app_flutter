@@ -2,43 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quizlet_app_flutter/modules/views/a_i_study_mode.dart';
-import 'package:quizlet_app_flutter/modules/views/create_lobby.dart';
-import 'package:quizlet_app_flutter/modules/views/ready_practice.dart';
+import 'package:quizlet_app_flutter/modules/views/active_lobby.dart';
+import 'package:quizlet_app_flutter/modules/views/flash_card_sets.dart';
 
-class AIFlashcardGenerated extends StatefulWidget {
-  const AIFlashcardGenerated({super.key});
+class ReadyPractice extends StatefulWidget {
+  const ReadyPractice({super.key});
 
   @override
-  State<AIFlashcardGenerated> createState() => _AIFlashcardGeneratedState();
+  State<ReadyPractice> createState() => _ReadyPracticeState();
 }
 
-class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
+class _ReadyPracticeState extends State<ReadyPractice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Row(
-          children: [
-            SizedBox(width: 15),
-            Icon(Icons.arrow_back, size: 30, color: Colors.black),
-            SizedBox(width: 10),
-          ],
-        ),
-        title: Text(
-          "Flashcards Generated!",
-          style: GoogleFonts.montserrat(
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.black,
-          ),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Gap(120),
+            Gap(180),
             Center(
               child: Container(
                 width: 100,
@@ -46,14 +28,14 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                 padding: EdgeInsets.all(30),
                 decoration: ShapeDecoration(
                   shape: CircleBorder(),
-                  color: Color(0xFFE98AC6),
+                  color: Color(0xFF9958FF),
                 ),
-                child: SvgPicture.asset('assets/icons/sparkles.svg'),
+                child: SvgPicture.asset('assets/icons/book.svg'),
               ),
             ),
             Gap(20),
             Text(
-              "All set!",
+              "Ready to learn?",
               style: GoogleFonts.montserrat(
                 fontSize: 25,
                 color: Colors.black,
@@ -62,7 +44,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
             ),
             Gap(10),
             Text(
-              "Your AI-generated flashcards are ready",
+              "Choose how you want to study",
               style: GoogleFonts.montserrat(
                 fontSize: 18,
                 color: Color(0xFF626978),
@@ -78,16 +60,9 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ReadyPractice(),
-                        ),
-                      );
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFE98AC6),
+                      backgroundColor: Color(0xFF9958FF),
                       padding: EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadiusGeometry.all(
@@ -128,7 +103,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CreateLobby()),
+                        MaterialPageRoute(builder: (context) => ActiveLobby()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -151,7 +126,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                         ),
                         Gap(5),
                         Text(
-                          "Start Quiz",
+                          "Take Quiz",
                           style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: Color(0xFF9958FF),
@@ -169,11 +144,11 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AIStudyMode()),
+                  MaterialPageRoute(builder: (context) => FlashCardSets()),
                 );
               },
               child: Text(
-                "Generate Another",
+                "Go Back",
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
                   color: Color(0xFF4A5565),

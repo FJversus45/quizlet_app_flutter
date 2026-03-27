@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/home_view.dart';
+import 'package:quizlet_app_flutter/modules/views/sign_up.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
 class LoginView extends StatefulWidget {
@@ -75,7 +77,12 @@ class _LoginViewState extends State<LoginView> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF9958FF),
                     padding: EdgeInsets.all(16),
@@ -99,9 +106,14 @@ class _LoginViewState extends State<LoginView> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xfffffffff),
+                    backgroundColor: Color(0xffffffff),
 
                     padding: EdgeInsets.all(16),
                     shape: RoundedRectangleBorder(
@@ -126,12 +138,20 @@ class _LoginViewState extends State<LoginView> {
             ),
 
             Gap(15),
-            Text(
-              "Don't have an account, Sign Up",
-              style: GoogleFonts.montserrat(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF9958FF),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUp()),
+                );
+              },
+              child: Text(
+                "Don't have an account, Sign Up",
+                style: GoogleFonts.montserrat(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF9958FF),
+                ),
               ),
             ),
           ],

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/a_i_study_mode.dart';
+import 'package:quizlet_app_flutter/modules/views/create_flashcard_set.dart';
+import 'package:quizlet_app_flutter/modules/views/join_lobby.dart';
+import 'package:quizlet_app_flutter/modules/views/practice_flashcards.dart';
 import 'package:quizlet_app_flutter/modules/widgets/page_blocks.dart';
 
 class HomeView extends StatefulWidget {
@@ -41,36 +45,72 @@ class _HomeViewState extends State<HomeView> {
               Gap(40),
               Row(
                 children: [
-                  PageBlocks(
-                    primaryColor: 0xFFA63AFF,
-                    secondaryColor: 0xFFB65DFF,
-                    text: "Create Flashcard Set",
-                    image: "assets/icons/plus.svg",
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CreateFlashcardSet(),
+                        ),
+                      );
+                    },
+                    child: PageBlocks(
+                      primaryColor: 0xFFA63AFF,
+                      secondaryColor: 0xFFB65DFF,
+                      text: "Create Flashcard Set",
+                      image: "assets/icons/plus.svg",
+                    ),
                   ),
                   Gap(10),
-                  PageBlocks(
-                    primaryColor: 0xFF2475FF,
-                    secondaryColor: 0xFF4E8FFF,
-                    text: "Join Lobby",
-                    image: "assets/icons/users.svg",
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => JoinLobby()),
+                      );
+                    },
+                    child: PageBlocks(
+                      primaryColor: 0xFF2475FF,
+                      secondaryColor: 0xFF4E8FFF,
+                      text: "Join Lobby",
+                      image: "assets/icons/users.svg",
+                    ),
                   ),
                 ],
               ),
               Gap(10),
               Row(
                 children: [
-                  PageBlocks(
-                    primaryColor: 0xFF00B5A2,
-                    secondaryColor: 0xFF33C0B1,
-                    text: 'Practice Flashcards',
-                    image: "assets/icons/book.svg",
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PracticeFlashcards(),
+                        ),
+                      );
+                    },
+                    child: PageBlocks(
+                      primaryColor: 0xFF00B5A2,
+                      secondaryColor: 0xFF33C0B1,
+                      text: 'Practice Flashcards',
+                      image: "assets/icons/book.svg",
+                    ),
                   ),
                   Gap(10),
-                  PageBlocks(
-                    primaryColor: 0xFFF42C95,
-                    secondaryColor: 0xFFF553A7,
-                    text: "AI Study Mode",
-                    image: 'assets/icons/sparkles.svg',
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AIStudyMode()),
+                      );
+                    },
+                    child: PageBlocks(
+                      primaryColor: 0xFFF42C95,
+                      secondaryColor: 0xFFF553A7,
+                      text: "AI Study Mode",
+                      image: 'assets/icons/sparkles.svg',
+                    ),
                   ),
                 ],
               ),

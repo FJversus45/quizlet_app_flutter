@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/active_lobby.dart';
+import 'package:quizlet_app_flutter/modules/views/create_lobby.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
 class JoinLobby extends StatefulWidget {
@@ -77,7 +79,12 @@ class _JoinLobbyState extends State<JoinLobby> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ActiveLobby()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF9958FF),
                     padding: EdgeInsets.all(16),
@@ -105,7 +112,12 @@ class _JoinLobbyState extends State<JoinLobby> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CreateLobby()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFFFFFFFF),
 

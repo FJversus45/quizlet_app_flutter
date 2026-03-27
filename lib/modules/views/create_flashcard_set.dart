@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_app_flutter/modules/views/flash_card_sets.dart';
 import 'package:quizlet_app_flutter/modules/widgets/custom_text_field.dart';
 
 class CreateFlashcardSet extends StatefulWidget {
@@ -49,7 +50,14 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FlashCardSets(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF9958FF),
                       padding: EdgeInsets.all(16),

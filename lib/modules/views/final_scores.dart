@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quizlet_app_flutter/modules/views/a_i_study_mode.dart';
-import 'package:quizlet_app_flutter/modules/views/create_lobby.dart';
-import 'package:quizlet_app_flutter/modules/views/ready_practice.dart';
+import 'package:quizlet_app_flutter/modules/views/home_view.dart';
 
-class AIFlashcardGenerated extends StatefulWidget {
-  const AIFlashcardGenerated({super.key});
+class FinalScores extends StatefulWidget {
+  const FinalScores({super.key});
 
   @override
-  State<AIFlashcardGenerated> createState() => _AIFlashcardGeneratedState();
+  State<FinalScores> createState() => _FinalScoresState();
 }
 
-class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
+class _FinalScoresState extends State<FinalScores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +23,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
           ],
         ),
         title: Text(
-          "Flashcards Generated!",
+          "Game Over!",
           style: GoogleFonts.montserrat(
             fontSize: 30,
             fontWeight: FontWeight.w800,
@@ -46,14 +43,14 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                 padding: EdgeInsets.all(30),
                 decoration: ShapeDecoration(
                   shape: CircleBorder(),
-                  color: Color(0xFFE98AC6),
+                  color: Color(0xFFf4b800),
                 ),
-                child: SvgPicture.asset('assets/icons/sparkles.svg'),
+                child: Icon(Icons.leaderboard, color: Colors.white),
               ),
             ),
             Gap(20),
             Text(
-              "All set!",
+              "Final Scores",
               style: GoogleFonts.montserrat(
                 fontSize: 25,
                 color: Colors.black,
@@ -62,7 +59,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
             ),
             Gap(10),
             Text(
-              "Your AI-generated flashcards are ready",
+              "Great game everyone",
               style: GoogleFonts.montserrat(
                 fontSize: 18,
                 color: Color(0xFF626978),
@@ -78,16 +75,9 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ReadyPractice(),
-                        ),
-                      );
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFE98AC6),
+                      backgroundColor: Color(0xFFf4b800),
                       padding: EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadiusGeometry.all(
@@ -96,19 +86,49 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                       ),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: SvgPicture.asset("assets/icons/book.svg"),
+                        Row(
+                          children: [
+                            Text(
+                              "#1",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 25,
+                                color: Color(0xFFffffff),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Gap(15),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Guest User",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 18,
+                                    color: Color(0xFFffffff),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Gap(3),
+                                Text(
+                                  "You",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    color: Color(0xFFffffff),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        Gap(5),
                         Text(
-                          "Study Flashcards",
+                          "100",
                           style: GoogleFonts.montserrat(
-                            fontSize: 16,
+                            fontSize: 25,
                             color: Color(0xFFffffff),
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
@@ -128,7 +148,7 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CreateLobby()),
+                        MaterialPageRoute(builder: (context) => HomeView()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -142,42 +162,15 @@ class _AIFlashcardGeneratedState extends State<AIFlashcardGenerated> {
                         side: BorderSide(width: 1.5, color: Color(0xFF9958FF)),
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: SvgPicture.asset("assets/icons/play.svg"),
-                        ),
-                        Gap(5),
-                        Text(
-                          "Start Quiz",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            color: Color(0xFF9958FF),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      "Back to Home",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Color(0xFF9958FF),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
-            Gap(20),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AIStudyMode()),
-                );
-              },
-              child: Text(
-                "Generate Another",
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  color: Color(0xFF4A5565),
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
