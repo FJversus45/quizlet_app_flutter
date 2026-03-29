@@ -2,14 +2,29 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:quizlet_app_flutter/core/shared_services/services/local_cache.dart';
 import 'package:quizlet_app_flutter/locator.dart';
 
+import 'package:http/http.dart' as http;
+
+// Custom client with longer timeout
+class _TimeoutClient extends http.BaseClient {
+  final _inner = http.Client();
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    return _inner
+        .send(request)
+        .timeout(const Duration(seconds: 30)); // ⬆️ was 5s default
+  }
+}
+
 class GraphQLConfig {
   final cache = locator<LocalCache>();
-
   static final HttpLink httpLink = HttpLink(
-    'https://book-app-8yf0.onrender.com/graphql',
+    'https://quizlet-nestjs.onrender.com/graphql',
+    httpClient: _TimeoutClient(), // 👈 pass it here
   );
+
   static final WebSocketLink websocketLink = WebSocketLink(
-    'wss://book-app-8yf0.onrender.com/graphql',
+    'wss://quizlet-nestjs.onrender.com/graphql',
     subProtocol: GraphQLProtocol.graphqlTransportWs,
     config: SocketClientConfig(
       autoReconnect: true,
@@ -48,6 +63,10 @@ class GraphQLConfig {
       websocketLink,
       authHttpLink,
     );
-    return GraphQLClient(link: link, cache: GraphQLCache());
+    return GraphQLClient(
+      link: link,
+      cache: GraphQLCache(),
+      queryRequestTimeout: const Duration(seconds: 30),
+    );
   }
 }

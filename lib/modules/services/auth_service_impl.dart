@@ -12,10 +12,9 @@ class AuthServiceImpl implements AuthService {
   GraphQLClient client = graphQLConfig.clientToQuery();
 
   final cache = locator<LocalCache>();
-
   final String loginMutation = r"""
-mutation Login($loginInput: LoginInput!) {
-  login(LoginInput: $loginInput) {
+mutation Mutation($loginInput: LoginInput!) {
+  login(loginInput: $loginInput) {
     token
     user {
       fullname
@@ -23,27 +22,26 @@ mutation Login($loginInput: LoginInput!) {
     }
   }
 }
-    """;
+""";
 
   final String signUpMutation = r"""
-    mutation SignUp($signUpInput: SignUpInput!) {
-  signUp(SignUpInput: $signUpInput) {
+mutation Mutation($signUpInput: SignUpInput!) {
+  signUp(signUpInput: $signUpInput) {
     token
     user {
-      id
-      fullname
-      password
       email
+      fullname
     }
   }
-}""";
-
+}
+""";
   @override
   Future<GeneralResponse<dynamic>> login(String email, String password) async {
     try {
       final MutationOptions options = MutationOptions(
         document: gql(loginMutation),
         fetchPolicy: FetchPolicy.noCache,
+
         variables: {
           "loginInput": {"email": email, "password": password},
         },
@@ -67,17 +65,21 @@ mutation Login($loginInput: LoginInput!) {
   }
 
   @override
-  Future<GeneralResponse<dynamic>> signUp(User user, String password) async {
+  Future<GeneralResponse<dynamic>> signUp(
+    String name,
+    String email,
+    String password,
+  ) async {
     try {
       final MutationOptions options = MutationOptions(
         document: gql(signUpMutation),
         fetchPolicy: FetchPolicy.noCache,
         variables: {
           "signUpInput": {
-            "email": user.email,
-            "fullname": user.fullName,
+            "email": email,
+            "fullname": name,
             "password": password,
-            "username": user.userName,
+            "username": name.toLowerCase().replaceAll(' ', '_'),
           },
         },
       );

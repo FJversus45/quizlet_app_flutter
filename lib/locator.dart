@@ -1,15 +1,18 @@
-import 'package:book_app/core/shared_services/implementations/local_cache_impl.dart';
-import 'package:book_app/core/shared_services/implementations/secure_storage_impl.dart';
-import 'package:book_app/core/shared_services/services/local_cache.dart';
-import 'package:book_app/core/shared_services/services/secure_storage.dart';
-import 'package:book_app/modules/auth/provider/auth_notifier.dart';
-import 'package:book_app/modules/auth/services/auth_service.dart';
-import 'package:book_app/modules/auth/services/auth_service_impl.dart';
-import 'package:book_app/modules/books/provider/book_notifier.dart';
-import 'package:book_app/modules/books/services/book_services.dart';
-import 'package:book_app/modules/books/services/book_services_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:quizlet_app_flutter/core/shared_services/implementations/local_cache_impl.dart';
+import 'package:quizlet_app_flutter/core/shared_services/implementations/secure_storage_impl.dart';
+import 'package:quizlet_app_flutter/core/shared_services/services/local_cache.dart';
+import 'package:quizlet_app_flutter/core/shared_services/services/secure_storage.dart';
+import 'package:quizlet_app_flutter/modules/provider/auth_provider.dart';
+import 'package:quizlet_app_flutter/modules/provider/flashcard_provider.dart';
+import 'package:quizlet_app_flutter/modules/provider/lobby_provider.dart';
+import 'package:quizlet_app_flutter/modules/services/auth_service.dart';
+import 'package:quizlet_app_flutter/modules/services/auth_service_impl.dart';
+import 'package:quizlet_app_flutter/modules/services/flashcard_set_service_impl.dart';
+import 'package:quizlet_app_flutter/modules/services/flashcard_sets_service.dart';
+import 'package:quizlet_app_flutter/modules/services/lobby_service.dart';
+import 'package:quizlet_app_flutter/modules/services/lobby_service_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
@@ -34,10 +37,11 @@ Future<void> setupLocator() async {
   // final networkClient = NetworkClient(cache: locator(), dio: dio);
   // locator.registerSingleton<NetworkClient>(networkClient);
   locator.registerLazySingleton<AuthService>(() => AuthServiceImpl());
-  locator.registerLazySingleton<BookServices>(() => BookServicesImpl());
-  // locator.registerLazySingleton<HomeService>(() => HomeServiceImpl(
-  //       networkClient: networkClient,
-  //     ));
+  locator.registerLazySingleton<LobbyService>(() => LobbyServiceImpl());
+
+  locator.registerLazySingleton<FlashCardSetsService>(
+    () => FlashcardSetServiceImpl(),
+  );
   // locator.registerLazySingleton<ListingService>(() => ListingServiceImpl(
   //       networkClient: networkClient,
   //     ));
@@ -68,6 +72,8 @@ Future<void> setupLocator() async {
   // locator
   //     .registerLazySingleton<NotificationService>(() => NotificationService());
 
-  locator.registerLazySingleton<AuthNotifier>(() => AuthNotifier());
-  locator.registerLazySingleton<BookNotifier>(() => BookNotifier());
+  locator.registerLazySingleton<AuthProvider>(() => AuthProvider());
+  locator.registerLazySingleton<LobbyNotifier>(() => LobbyNotifier());
+  locator.registerLazySingleton<FlashcardProvider>(() => FlashcardProvider());
+  // locator.registerLazySingleton<BookNotifier>(() => BookNotifier());
 }

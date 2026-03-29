@@ -4,5 +4,5 @@ import 'package:quizlet_app_flutter/modules/model/user.dart';
 abstract class AuthService {
   Future<GeneralResponse> login(String email, String password);
 
-  Future<GeneralResponse> signUp(User user, String password);
+  Future<GeneralResponse> signUp(String name, String email, String password);
 }

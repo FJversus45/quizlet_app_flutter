@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:quizlet_app_flutter/locator.dart';
+import 'package:quizlet_app_flutter/modules/services/auth_service.dart';
+import 'package:quizlet_app_flutter/modules/services/flashcard_sets_service.dart';
+import 'package:quizlet_app_flutter/modules/services/lobby_service.dart';
 
 class BaseChangeNotifier extends ChangeNotifier {
   late AuthService authService;
-  late BookServices bookServices;
+  late LobbyService lobbyService;
+  late FlashCardSetsService flashCardSetsService;
 
-  BaseChangeNotifier({AuthService? authService, BookServices? bookServices}) {
+  BaseChangeNotifier({
+    AuthService? authService,
+    LobbyService? lobbyService,
+    FlashCardSetsService? flashCardSetsService,
+  }) {
     this.authService = authService ?? locator();
-    this.bookServices = bookServices ?? locator();
+    this.lobbyService = lobbyService ?? locator();
+    this.flashCardSetsService = flashCardSetsService ?? locator();
   }
 
   bool _isLoading = false;

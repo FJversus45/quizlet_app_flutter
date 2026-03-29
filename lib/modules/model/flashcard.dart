@@ -1,17 +1,13 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Flashcard extends Equatable {
-  const Flashcard({
-    required this.id,
-    required this.question,
-    required this.answer,
-    this.createdAt,
-  });
+  Flashcard({this.id, this.question, this.answer, this.createdAt});
 
-  final String id;
-  final String question;
-  final String answer;
-  final DateTime? createdAt;
+  String? id;
+  String? question;
+  String? answer;
+  DateTime? createdAt;
 
   factory Flashcard.fromJson(Map<String, dynamic> json) {
     return Flashcard(
@@ -22,7 +18,7 @@ class Flashcard extends Equatable {
     );
   }
 
-  Map<String, dynamic> toInput() {
+  Map<String, dynamic> toJson() {
     return <String, dynamic>{'question': question, 'answer': answer};
   }
 
